@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Seekika!</string>
+    <string name="app_name">Seekika</string>
+    <string name="seekika_about">About Seekika</string>
+    <string name="app_settings">Seekika Settings</string>
+</resources>

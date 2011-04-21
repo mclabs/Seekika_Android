@@ -1,0 +1,16 @@
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  <PreferenceCategory
+                android:title="Location">
+  </PreferenceCategory>
+  
+  <PreferenceCategory
+                android:title="Account">
+                <EditTextPreference
+                android:name="Account Settings"
+                android:summary="This allows you to enter a string"
+                android:defaultValue="Nothing"
+                android:title="Edit This Text"
+                android:key="editTextPref" />
+   </PreferenceCategory>
+</PreferenceScreen>
