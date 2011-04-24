@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Signup extends Activity {
-	private static final String t = "Signup";
+	private static final String t = "SignupActivity";
 	private boolean mError=false;
 	private String mErrorMessage="";
 	
@@ -85,6 +85,7 @@ public class Signup extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				Log.i(t,"Return user to home screen");
 				Intent intent=new Intent(Signup.this,Seekika.class);
 				startActivity(intent);
 				
