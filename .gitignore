@@ -1,14 +1,23 @@
-*.jar
-# Java class files
+
+bin
+gen
+bin/*
+gen/*
+*.swp
+tests/bin/*
+tests/gen/*
+tests/.settings/*
+tests/.settings
+.settings/*
+.DS_Store
+test/.DS_Store
 *.class
 
-# generated GUI files
-*R.java
 
-#built application files
-*.apk
-*.ap_
+
+
+
 
 # files from the dex VM
-*.dex
+
 
