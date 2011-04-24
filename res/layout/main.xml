@@ -1,12 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
+android:id="@+id/widget144"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical"
+ android:background="@drawable/white"
+>
+<ImageView
+android:src="@drawable/techcrunch"
+android:id="@+id/widget73"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:background="@drawable/white"
+android:padding="50px"
+>
+</ImageView>
+<EditText
+android:id="@+id/username"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:padding="5px"
+android:text="Username"
+android:textSize="18sp"
+>
+</EditText>
+<EditText
+android:id="@+id/password"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:padding="5px"
+android:text="Password"
+android:textSize="18sp"
+android:inputType="textPassword"
+>
+</EditText>
+<Button
+android:id="@+id/btn_signin"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:padding="5px"
+android:text="@string/sign_in"
+>
+</Button>
+<TextView
+android:id="@+id/widget164"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:padding="5px"
+android:text="Don't have an account? Get one, it's easy and free?"
+>
+</TextView>
+<LinearLayout
+android:id="@+id/widget171"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+>
+<Button
+android:id="@+id/btn_signup"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="@string/sign_up"
+>
+</Button>
 </LinearLayout>
+</LinearLayout>
+

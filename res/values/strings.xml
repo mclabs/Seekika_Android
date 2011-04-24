@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Seekika!</string>
+  
     <string name="app_name">Seekika</string>
     <string name="seekika_about">About Seekika</string>
     <string name="app_settings">Seekika Settings</string>
+    <string name="sign_in">Login</string>
+    <string name="sign_up">Sign up</string>
+    <string name="empty_profile_name">Name is required</string>
+    <string name="empty_profile_email">Email is required</string>
+    <string name="empty_profile_username">Username is required</string>
+    <string name="empty_profile_password">Password is required</string>
+    
 </resources>

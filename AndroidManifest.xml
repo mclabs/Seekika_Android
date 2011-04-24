@@ -23,6 +23,14 @@
 			</intent-filter>
 		</activity>
 		
+		<!-- Signup -->
+		<activity android:name=".Signup" android:label="@string/seekika_about">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT"></category>
+			</intent-filter>
+		</activity>
+		
 		<!-- Settings -->
 		<activity android:name=".Settings" android:label="@string/app_settings">
 			<intent-filter>
