@@ -38,8 +38,8 @@ public class Signup extends Activity {
     	mUsername=(EditText)findViewById(R.id.username);
     	mEmail=(EditText)findViewById(R.id.email);
     	mPassword=(EditText)findViewById(R.id.password);
-    	mBtnSignUp=(Button)findViewById(R.id.btn_signup);
-    	mBtnSignIn=(Button)findViewById(R.id.btn_signin);
+    	mBtnSignUp=(Button)findViewById(R.id.btn_create_profile);
+    	mBtnSignIn=(Button)findViewById(R.id.btn_sign_in);
     	
     	mBtnSignUp.setOnClickListener(new View.OnClickListener() {
 			
@@ -85,8 +85,8 @@ public class Signup extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				//Intent intent=new Intent(Signup.this,Seekika.class);
-				//startActivity(intent);
+				Intent intent=new Intent(Signup.this,Seekika.class);
+				startActivity(intent);
 				
 			}
 		});
