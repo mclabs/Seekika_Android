@@ -2,12 +2,10 @@ package com.seekika.android.app.tasks;
 
 import android.os.AsyncTask;
 
-public class SignUpTask extends AsyncTask<Void, Void, Void> {
-
-	
+public class SignUpTask extends AsyncTask<String, String, String> {
 
 	@Override
-	protected Void doInBackground(Void... params) {
+	protected String doInBackground(String... params) {
 		// TODO Auto-generated method stub
 		return null;
 	}

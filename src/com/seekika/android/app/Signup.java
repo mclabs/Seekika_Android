@@ -28,6 +28,7 @@ public class Signup extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
+        setTitle(getString(R.string.app_name));
         
         //load components
         initComponents();
@@ -71,7 +72,7 @@ public class Signup extends Activity {
 				if(!mError){
 					//save to Seekika Web
 				}else{
-					final Toast t = Toast.makeText(Signup.this, "Error!\n\n" + mErrorMessage,
+					final Toast t = Toast.makeText(Signup.this, "Error!\n\n" + mErrorMessage + "\n",
                             Toast.LENGTH_LONG);
                     t.show();
                     mErrorMessage = "";
