@@ -1,5 +1,8 @@
 package com.seekika.android.app;
 
+import com.seekika.android.app.helpers.Encryption;
+import com.seekika.android.app.tasks.SignUpTask;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +18,10 @@ public class Signup extends Activity {
 	private boolean mError=false;
 	private String mErrorMessage="";
 	
+	private String _username;
+	private String _name;
+	private String _email;
+	private String _password;
 	//components
 	private EditText mUsername;
 	private EditText mName;
@@ -50,29 +57,39 @@ public class Signup extends Activity {
 				mError=false;
 				//check that name is not empty
 				if(TextUtils.isEmpty(mName.getText())){
-					mErrorMessage=getString(R.string.empty_profile_name);
+					mErrorMessage=getString(R.string.empty_profile_name) + "\n";
 					mError=true;
 				}
 				
 				if(TextUtils.isEmpty(mUsername.getText())){
-					mErrorMessage+=getString(R.string.empty_profile_username);
+					mErrorMessage+=getString(R.string.empty_profile_username) + "\n";
 					mError=true;
 				}
 				
 				if(TextUtils.isEmpty(mEmail.getText())){
-					mErrorMessage+=getString(R.string.empty_profile_email);
+					mErrorMessage+=getString(R.string.empty_profile_email) + "\n";
 					mError=true;
 				}
 				
 				if(TextUtils.isEmpty(mPassword.getText())){
-					mErrorMessage+=getString(R.string.empty_profile_password);
+					mErrorMessage+=getString(R.string.empty_profile_password) + "\n";
 					mError=true;
 				}
 				
 				if(!mError){
-					//save to Seekika Web
+					//save to Seekika Web App
+					SignUpTask signUpTask=new SignUpTask();
+					signUpTask.applicationContext=Signup.this;
+					
+					_username=mUsername.getText().toString();
+					_name=mName.getText().toString();
+					_email=mEmail.getText().toString();
+					//password needs to be encrypted
+					Encryption enc=new Encryption();
+					_password=mPassword.getText().toString();
+					signUpTask.execute(_name,_email,_username,enc.md5(_password));
 				}else{
-					final Toast t = Toast.makeText(Signup.this, "Error!\n\n" + mErrorMessage + "\n",
+					final Toast t = Toast.makeText(Signup.this, "Error!\n\n" + mErrorMessage,
                             Toast.LENGTH_LONG);
                     t.show();
                     mErrorMessage = "";

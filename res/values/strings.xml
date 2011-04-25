@@ -10,5 +10,7 @@
     <string name="empty_profile_email">Email is required</string>
     <string name="empty_profile_username">Username is required</string>
     <string name="empty_profile_password">Password is required</string>
+    <string name="record_story">Record Story</string>
+    <string name="play_story">Play Recording</string>
     
 </resources>

@@ -2,6 +2,7 @@ package com.seekika.android.app;
 
 import java.util.ArrayList;
 
+import com.seekika.android.app.helpers.Encryption;
 import com.seekika.android.app.helpers.RestClient;
 import com.seekika.android.app.helpers.RestClient.RequestMethod;
 import com.seekika.android.app.tasks.AuthenticateTask;
@@ -67,13 +68,15 @@ public class Seekika extends Activity {
 				
 				if(!mError){
 					//authenticate on Web app
-					ArrayList<String> passing = new ArrayList<String>();
+					
 					AuthenticateTask authTask=new AuthenticateTask(Seekika.this);
 					authTask.applicationContext=Seekika.this;
 					//pass the username & password
 					_username=mUsername.getText().toString();
 					_password=mPassword.getText().toString();
-					authTask.execute(_username,_password);
+					Encryption enc=new Encryption();
+					
+					authTask.execute(_username,enc.md5(_password));
 					mErrorMessage = "";
 					
 				}else{
