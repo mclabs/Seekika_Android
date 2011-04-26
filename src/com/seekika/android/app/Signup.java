@@ -17,6 +17,7 @@ public class Signup extends Activity {
 	private static final String t = "SignupActivity";
 	private boolean mError=false;
 	private String mErrorMessage="";
+	private static final int LOGIN=1;
 	
 	private String _username;
 	private String _name;
@@ -104,8 +105,9 @@ public class Signup extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.i(t,"Return user to home screen");
-				Intent intent=new Intent(Signup.this,Seekika.class);
-				startActivity(intent);
+				Intent intent=new Intent(Signup.this,Login.class);
+				startActivityForResult(intent,LOGIN);
+				setResult(RESULT_OK);
 				
 			}
 		});
