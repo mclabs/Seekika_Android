@@ -12,6 +12,7 @@ public class Record extends Activity {
 	
 	private int SETTINGS=Menu.FIRST;
 	private int LOGOUT=Menu.FIRST + 1;
+	private int EXIT=Menu.FIRST + 2;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -25,7 +26,7 @@ public class Record extends Activity {
     
     	menu.add(Menu.NONE, SETTINGS, Menu.NONE, R.string.menu_settings);
         menu.add(Menu.NONE, LOGOUT, Menu.NONE, R.string.menu_logout);
-        
+        menu.add(EXIT, EXIT, Menu.NONE, R.string.menu_exit);
 		return super.onCreateOptionsMenu(menu);
     	
     }
