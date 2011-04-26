@@ -80,6 +80,7 @@ android:layout_width="150px"
 android:layout_height="wrap_content"
 android:text="@string/sign_up"
 android:padding="5px"
+android:paddingRight="5px"
 >
 </Button>
 </LinearLayout>
