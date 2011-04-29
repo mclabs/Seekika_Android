@@ -23,7 +23,8 @@ public class SeekikaDbAdapter {
 	    
 	    //Story table
 	    private static final String STORY_ID="_id";
-	    
+	    private static final String  TITLE="title";
+	    private static final String USER_ID="user_id";
 	    
 	    private Context applicationContext;
 	    
@@ -58,13 +59,16 @@ public class SeekikaDbAdapter {
 	
 	public SeekikaDbAdapter open() throws SQLException{
 		mDbHelper=new DatabaseHelper(applicationContext);
+		if(mDbHelper instanceof DatabaseHelper){
+			
+		}
 		mDb=mDbHelper.getWritableDatabase();
 		return this;
 	}
 	//Method to create story/recording
 	public long addStory(Story story){
 		ContentValues initialValues = new ContentValues();
-		
+		initialValues.put(STORY_ID, story.getId());
 		return mDb.insert(STORY_TABLE, null, initialValues);
 	}
 }
