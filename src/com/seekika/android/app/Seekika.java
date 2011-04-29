@@ -46,8 +46,7 @@ public class Seekika extends Activity {
     
     
     private void initComponents(){
-    	mUsername=(EditText)findViewById(R.id.username);
-    	mPassword=(EditText)findViewById(R.id.password);
+    	
     	mBtnSignUp=(Button)findViewById(R.id.btn_signup);
     	mBtnSignIn=(Button)findViewById(R.id.btn_signin);
     	
@@ -57,35 +56,9 @@ public class Seekika extends Activity {
     	mBtnSignIn.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				if(TextUtils.isEmpty(mUsername.getText())){
-					mErrorMessage=getString(R.string.empty_profile_username) + "\n";
-					mError=true;
-				}
-				if(TextUtils.isEmpty(mPassword.getText())){
-					mErrorMessage+=getString(R.string.empty_profile_password) + "\n";
-					mError=true;
-				}
-				
-				if(!mError){
-					//authenticate on Web app
-					
-					AuthenticateTask authTask=new AuthenticateTask(Seekika.this);
-					authTask.applicationContext=Seekika.this;
-					//pass the username & password
-					_username=mUsername.getText().toString();
-					_password=mPassword.getText().toString();
-					Encryption enc=new Encryption();
-					
-					authTask.execute(_username,enc.md5(_password));
-					mErrorMessage = "";
-					
-				}else{
-					final Toast t = Toast.makeText(Seekika.this, "Error!\n" + mErrorMessage + "\n\n",
-                            Toast.LENGTH_LONG);
-                    t.show();
-                    mErrorMessage = "";
-				}
-				
+				Log.i(t,"log in activity");
+				Intent intent=new Intent(Seekika.this,Login.class);
+				startActivity(intent);
 			}
 		});
     	
@@ -95,8 +68,8 @@ public class Seekika extends Activity {
 			public void onClick(View v) {
 				Log.i(t,"Sign up activity");
 				Intent intent=new Intent(Seekika.this,Signup.class);
-				startActivityForResult(intent,SIGNUP);
-				setResult(RESULT_OK);
+				startActivity(intent);
+				
 			}
 		});
     }

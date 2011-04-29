@@ -33,14 +33,14 @@ public class AuthenticateTask extends AsyncTask<String, String, String> {
 		if(status=="success"){
 			flag="success";
 		}else{
-			flag="success";
+			flag="fail";
 		}
 		return flag;
 	}
 	
 	@Override
 	protected void onPreExecute(){
-		this.dialog=ProgressDialog.show(applicationContext, "Authenticating", 
+		this.dialog=ProgressDialog.show(applicationContext, "", 
 				"Logging in",true);
 		
 	}
@@ -55,7 +55,7 @@ public class AuthenticateTask extends AsyncTask<String, String, String> {
 			Toast.makeText(applicationContext, "" + SUCCESS + "\n\n",
                     Toast.LENGTH_LONG).show();
 		}else{
-			    Log.i(t, "Successful login");
+			    Log.i(t, "failed login");
 				Toast.makeText(applicationContext, "FAIL",
 	                    Toast.LENGTH_LONG).show();
 		}

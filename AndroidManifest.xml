@@ -23,8 +23,16 @@
 			</intent-filter>
 		</activity>
 		
+		<!-- Login -->
+		<activity android:name=".Login" android:label="@string/seekika_login">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT"></category>
+			</intent-filter>
+		</activity>
+		
 		<!-- Signup -->
-		<activity android:name=".Signup" android:label="@string/seekika_about">
+		<activity android:name=".Signup" android:label="@string/seekika_signup">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT"></category>
@@ -33,6 +41,15 @@
 		
 		<!-- Settings -->
 		<activity android:name=".Settings" android:label="@string/app_settings">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT"></category>
+			</intent-filter>
+		</activity>
+		
+		
+		<!-- Gallery -->
+		<activity android:name=".Gallery" android:label="@string/seekika_login">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW" />
 				<category android:name="android.intent.category.DEFAULT"></category>
