@@ -17,5 +17,7 @@
     <string name="menu_settings">Settings</string>
     <string name="menu_logout">Logout</string>
     <string name="menu_exit">Exit</string>
+    <string name="login_error">Invalid username/password combination</string>
+    <string name="connection_error">Unable to connect to remote server</string>
     
 </resources>

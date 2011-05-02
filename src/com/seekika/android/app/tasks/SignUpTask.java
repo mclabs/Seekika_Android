@@ -1,5 +1,6 @@
 package com.seekika.android.app.tasks;
 
+import com.seekika.android.app.constants.SeekikaConstants;
 import com.seekika.android.app.helpers.RestClient;
 import com.seekika.android.app.helpers.RestClient.RequestMethod;
 
@@ -11,8 +12,7 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 
 	private ProgressDialog dialog;
 	public Context applicationContext;
-	private static final String SIGNUP_URL="http://192.168.1.102:8080/api/signup/";
-	
+		
 	@Override
 	protected String doInBackground(String... params) {
 		
@@ -21,7 +21,7 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 	
 	@Override
 	protected void onPreExecute(){
-		this.dialog=ProgressDialog.show(applicationContext, "Signup", 
+		this.dialog=ProgressDialog.show(applicationContext, "", 
 				"Creating account",true);
 		
 	}
@@ -33,7 +33,7 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 	}
 	
 	private String signUpUser(String name,String email,String username,String password){
-		RestClient client = new RestClient(SIGNUP_URL);
+		RestClient client = new RestClient(SeekikaConstants.SIGNUP_URL);
 		client.AddParam("name", name);
 		client.AddParam("email", email);
 		client.AddParam("username", username);

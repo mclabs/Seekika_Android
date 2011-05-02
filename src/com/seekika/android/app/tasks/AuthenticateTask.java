@@ -2,10 +2,16 @@ package com.seekika.android.app.tasks;
 
 import java.util.ArrayList;
 
+import com.seekika.android.app.Login;
+import com.seekika.android.app.R;
 import com.seekika.android.app.Seekika;
+import com.seekika.android.app.constants.SeekikaConstants;
 import com.seekika.android.app.helpers.RestClient;
 import com.seekika.android.app.helpers.RestClient.RequestMethod;
+import com.seekika.android.app.listeners.LoginListener;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -15,56 +21,56 @@ import android.widget.Toast;
 public class AuthenticateTask extends AsyncTask<String, String, String> {
 	private ProgressDialog dialog;
 	public Context applicationContext;
+	private LoginListener mStateListener;
 
-	private static final String LOGIN_URL="http://192.168.1.102:8080/api/auth/";
-	private static final String SUCCESS="Success";
+	
+	private static final String SUCCESS="success";
+	private static final String FAIL="fail";
 	private static final String t="AuthenticateTask";
 	
-	private String status,flag;
 	
-	public AuthenticateTask(Context ctx){
-		super();
-		this.applicationContext=ctx;
-	}
+	private String flag;
+	
+	//public AuthenticateTask(Context ctx){
+		//super();
+		//this.applicationContext=ctx;
+	//}
 
 	@Override
 	protected String doInBackground(String... params) {
-		status=authenticateUser(params[0],params[1]);
-		if(status=="success"){
-			flag="success";
-		}else{
-			flag="fail";
-		}
-		return flag;
+		return authenticateUser(params[0],params[1]);
+		//Log.i(t,"authenticateUser return " + status);
+		
+		//return status;
+		
 	}
 	
 	@Override
 	protected void onPreExecute(){
-		this.dialog=ProgressDialog.show(applicationContext, "", 
-				"Logging in",true);
+		super.onPreExecute();
+		//this.dialog=ProgressDialog.show(applicationContext, "", 
+			//	"Logging in",true);
 		
 	}
 	
 	@Override
 	protected void onPostExecute(String result) {
-		this.dialog.cancel();
+		super.onPostExecute(result);
+		//this.dialog.cancel();
 		
 		Log.i(t, "Result from Seekika Webapp=" + result);
-		if(result=="success"){
-			Log.i(t, "Successful login");
-			Toast.makeText(applicationContext, "" + SUCCESS + "\n\n",
-                    Toast.LENGTH_LONG).show();
-		}else{
-			    Log.i(t, "failed login");
-				Toast.makeText(applicationContext, "FAIL",
-	                    Toast.LENGTH_LONG).show();
-		}
+		
+		mStateListener.loginComplete(result);
+		
+		
+		
+		
 		
 	}
 	
 	private String authenticateUser(String username, String password){
 		
-		RestClient client = new RestClient(LOGIN_URL);
+		RestClient client = new RestClient(SeekikaConstants.LOGIN_URL);
 		client.AddParam("username", username);
 		client.AddParam("password", password);
 		try{
@@ -75,6 +81,10 @@ public class AuthenticateTask extends AsyncTask<String, String, String> {
 		String response=client.getResponse();
 		Log.i(t, "Response from Seekika Webapp=" + response);
 		return response;
+	}
+	
+	public void setLoginListener(LoginListener sl){
+		mStateListener=sl;
 	}
 
 }

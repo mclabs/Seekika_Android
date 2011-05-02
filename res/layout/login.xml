@@ -50,6 +50,7 @@ android:layout_width="fill_parent"
 android:layout_height="wrap_content"
 android:padding="5px"
 android:text="@string/sign_in"
+
 >
 </Button>
 <TextView
@@ -71,7 +72,8 @@ android:id="@+id/btn_back"
 android:layout_width="150px"
 android:layout_height="wrap_content"
 android:text="Back"
-android:padding="5px"
+android:padding="12dp"
+android:textSize="16dp"
 >
 </Button>
 <Button
@@ -79,8 +81,8 @@ android:id="@+id/btn_signup"
 android:layout_width="150px"
 android:layout_height="wrap_content"
 android:text="@string/sign_up"
-android:padding="5px"
-android:paddingRight="5px"
+android:padding="12dp"
+android:textSize="16dp"
 >
 </Button>
 </LinearLayout>
