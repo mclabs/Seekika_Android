@@ -4,6 +4,7 @@ import com.seekika.android.app.models.Story;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -13,7 +14,7 @@ import android.util.Log;
 public class SeekikaDbAdapter {
 	
 	 	private static final String TAG = "SeekikaDbAdapter";
-	 	private static final String CREATE_STORY_TABLE="";
+	 	
 	    private DatabaseHelper mDbHelper;
 	    private SQLiteDatabase mDb;
 	    
@@ -22,9 +23,24 @@ public class SeekikaDbAdapter {
 	    private static final int DATABASE_VERSION = 2;
 	    
 	    //Story table
+	   
 	    private static final String STORY_ID="_id";
 	    private static final String  TITLE="title";
 	    private static final String USER_ID="user_id";
+	    private static final String FILENAME="filename";
+	    private static final String LAT="lat";
+	    private static final String LON="lon";
+	    
+	    public static final String[] STORY_COLUMNS=new String[]{
+	    	STORY_ID,TITLE,USER_ID,FILENAME,LAT,LON
+	    };
+	    private static final String CREATE_STORY_TABLE="CREATE TABLE IF NOT EXISTS "
+	    	+ STORY_TABLE + " (" + STORY_ID + " INTEGER PRIMARY KEY, "
+	    	+ USER_ID + " TEXT NOT NULL, "
+	    	+ TITLE + " TEXT NOT NULL, "
+	    	+ FILENAME + " TEXT NOT NULL, "
+	    	+ LAT + " TEXT NOT NULL, "
+	    	+ LON + " TEXT NOT NULL, ";
 	    
 	    private Context applicationContext;
 	    
@@ -70,5 +86,9 @@ public class SeekikaDbAdapter {
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(STORY_ID, story.getId());
 		return mDb.insert(STORY_TABLE, null, initialValues);
+	}
+	
+	public Cursor fetchStories(){
+		return null;
 	}
 }
