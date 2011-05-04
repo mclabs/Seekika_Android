@@ -1,9 +1,14 @@
 package com.seekika.android.app;
 
 import com.seekika.android.app.helpers.Encryption;
+import com.seekika.android.app.listeners.SignupListener;
 import com.seekika.android.app.tasks.SignUpTask;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,10 +18,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Signup extends Activity {
-	private static final String t = "SignupActivity";
+public class Signup extends Activity implements SignupListener {
+	private static final String TAG = "SignupActivity";
 	private boolean mError=false;
 	private String mErrorMessage="";
+	
+	private static final int PROGRESS_DIALOG = 1;
+	private static final int ALERT_DIALOG = 2;
 	private static final int LOGIN=1;
 	
 	private String _username;
@@ -30,6 +38,10 @@ public class Signup extends Activity {
 	private EditText mPassword;
 	private Button mBtnSignUp;
 	private Button mBtnSignIn;
+	private ProgressDialog mProgressDialog;
+	private AlertDialog mAlertDialog;
+	
+	private SignUpTask mSignUpTask;
 
 	/** Called when the activity is first created. */
     @Override
@@ -54,7 +66,7 @@ public class Signup extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Log.i(t,"Sign up user");
+				Log.i(TAG,"Sign up user");
 				mError=false;
 				//check that name is not empty
 				if(TextUtils.isEmpty(mName.getText())){
@@ -79,8 +91,9 @@ public class Signup extends Activity {
 				
 				if(!mError){
 					//save to Seekika Web App
-					SignUpTask signUpTask=new SignUpTask();
-					signUpTask.applicationContext=Signup.this;
+					showDialog(PROGRESS_DIALOG);
+					mSignUpTask=new SignUpTask();
+					mSignUpTask.applicationContext=Signup.this;
 					
 					_username=mUsername.getText().toString();
 					_name=mName.getText().toString();
@@ -88,7 +101,10 @@ public class Signup extends Activity {
 					//password needs to be encrypted
 					Encryption enc=new Encryption();
 					_password=mPassword.getText().toString();
-					signUpTask.execute(_name,_email,_username,enc.md5(_password));
+					
+					mSignUpTask.setmSignUpListener(Signup.this);
+					mSignUpTask.execute(_name,_email,_username,enc.md5(_password));
+					
 				}else{
 					final Toast t = Toast.makeText(Signup.this, "Error!\n\n" + mErrorMessage,
                             Toast.LENGTH_LONG);
@@ -104,17 +120,64 @@ public class Signup extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Log.i(t,"Return user to home screen");
+				Log.i(TAG,"Return user to home screen");
 				Intent intent=new Intent(Signup.this,Login.class);
 				startActivityForResult(intent,LOGIN);
 				setResult(RESULT_OK);
 				
 			}
 		});
-    		
-    	
-    	
-    	
+      	
     }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+    	switch(id){
+		case PROGRESS_DIALOG:
+			mProgressDialog=new ProgressDialog(this);
+			DialogInterface.OnClickListener loadingButtonListener=new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.dismiss();
+					mSignUpTask.setmSignUpListener(null);
+					
+				}
+			};
+			mProgressDialog.setTitle("Signup");
+			mProgressDialog.setMessage("Please wait");
+			mProgressDialog.setIcon(android.R.drawable.ic_dialog_info);
+            mProgressDialog.setIndeterminate(true);
+            mProgressDialog.setCancelable(false);
+           //mProgressDialog.setButton("Cancel",loadingButtonListener);
+			return mProgressDialog;
+			
+    	}
+    	return null;
+    }
+    
+	@Override
+	public void signUpComplete(String result) {
+		String dialogMessage = null;
+        String dialogTitle = null;
+        dismissDialog(PROGRESS_DIALOG);
+        if(result==null){
+        	new AlertDialog.Builder(Signup.this).setTitle("Connection Error").setMessage(getString(R.string.connection_error)).setNeutralButton("Close", null).show();
+        }else{
+        	String r=result.trim();
+			int status=Integer.parseInt(r.replaceAll("[^0-9.]",""));
+        	if(status==1){
+        		//go to home screen activity
+        		Intent intent=new Intent(Signup.this,Home.class);
+        		startActivity(intent);
+        		finish();
+        		
+        	}else{
+        		//signup fail
+        		new AlertDialog.Builder(Signup.this).setTitle("Signup Error").setMessage(getString(R.string.signup_failed)).setNeutralButton("Close", null).show();
+        	}
+        }
+		
+	}
 
 }

@@ -94,6 +94,7 @@ public class Login extends Activity implements LoginListener {
 			public void onClick(View v) {
 				Intent intent=new Intent(Login.this,Seekika.class);
 				startActivity(intent);
+				finish();
 				
 			}
 		});

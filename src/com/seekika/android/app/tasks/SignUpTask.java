@@ -3,6 +3,7 @@ package com.seekika.android.app.tasks;
 import com.seekika.android.app.constants.SeekikaConstants;
 import com.seekika.android.app.helpers.RestClient;
 import com.seekika.android.app.helpers.RestClient.RequestMethod;
+import com.seekika.android.app.listeners.SignupListener;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,6 +13,7 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 
 	private ProgressDialog dialog;
 	public Context applicationContext;
+	private SignupListener mSignUpListener;
 		
 	@Override
 	protected String doInBackground(String... params) {
@@ -21,14 +23,16 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 	
 	@Override
 	protected void onPreExecute(){
-		this.dialog=ProgressDialog.show(applicationContext, "", 
-				"Creating account",true);
+		//this.dialog=ProgressDialog.show(applicationContext, "", 
+			//	"Creating account",true);
 		
 	}
 	
 	@Override
 	protected void onPostExecute(String result) {
-		this.dialog.cancel();
+		super.onPostExecute(result);
+		mSignUpListener.signUpComplete(result);
+		//this.dialog.cancel();
 		
 	}
 	
@@ -45,6 +49,10 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 		}
 		String response=client.getResponse();
 		return response;
+	}
+
+	public void setmSignUpListener(SignupListener mSignUpListener) {
+		this.mSignUpListener = mSignUpListener;
 	}
 
 }

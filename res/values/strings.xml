@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  
+  	<string name="welcome">Welcome</string>
     <string name="app_name">Seekika</string>
     <string name="seekika_about">About Seekika</string>
     <string name="seekika_login">Login</string>
@@ -19,5 +19,6 @@
     <string name="menu_exit">Exit</string>
     <string name="login_error">Invalid username/password combination</string>
     <string name="connection_error">Unable to connect to remote server</string>
+    <string name="signup_failed">Username or email address already in use. Please enter new details</string>
     
 </resources>
