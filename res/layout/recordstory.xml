@@ -32,21 +32,26 @@ android:layout_alignParentLeft="true"
 android:orientation="horizontal"
 >
 <Button
-android:id="@+id/btn_record"
+android:id="@+id/btn_start_recording"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 android:text="@string/record_story"
 >
 </Button>
 <Button
-android:id="@+id/widget86"
-android:text=""
+android:id="@+id/btn_stop_recording"
+android:text="Stop Recording"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
 
 
 >
 </Button>
+<Chronometer 
+    android:layout_width="wrap_content" 
+    android:layout_height="wrap_content" 
+    android:id="@+id/chrono"
+    />
 </LinearLayout>
 </RelativeLayout>
 </RelativeLayout>

@@ -23,8 +23,7 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 	
 	@Override
 	protected void onPreExecute(){
-		//this.dialog=ProgressDialog.show(applicationContext, "", 
-			//	"Creating account",true);
+		super.onPreExecute();
 		
 	}
 	
@@ -32,7 +31,7 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 	protected void onPostExecute(String result) {
 		super.onPostExecute(result);
 		mSignUpListener.signUpComplete(result);
-		//this.dialog.cancel();
+		
 		
 	}
 	

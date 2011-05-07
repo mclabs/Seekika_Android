@@ -89,6 +89,7 @@ public class SeekikaDbAdapter {
 	}
 	
 	public Cursor fetchStories(){
-		return null;
+		return mDb.query(STORY_TABLE, STORY_COLUMNS, null, null, null, null, STORY_ID + " DESC");
+		
 	}
 }

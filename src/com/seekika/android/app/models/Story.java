@@ -9,6 +9,7 @@ public class Story {
 	private String status;
 	private String lat;
 	private String lon;
+	private String deviceID;
 	
 	public Story(int id, String title, String userId, String created_on,
 			String status) {

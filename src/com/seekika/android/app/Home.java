@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class Home extends Activity {
@@ -15,6 +17,9 @@ public class Home extends Activity {
 	private static final int SETTINGS=Menu.FIRST;
 	private static final int LOGOUT=Menu.FIRST + 1;
 	private static final int EXIT=Menu.FIRST + 2;
+	
+	private Button mBtnRecordStory;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +32,21 @@ public class Home extends Activity {
         TextView text = (TextView) findViewById(R.id.text);
         text.setText("This app has been started " + _username + " times.");
         setTitle(getString(R.string.welcome) + "       " + _username);
-        
+        initComponents();  
     }
+	
+	public void initComponents(){
+		mBtnRecordStory=(Button)findViewById(R.id.btn_record);
+		mBtnRecordStory.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i=new Intent(Home.this,Record.class);
+				startActivity(i);
+				
+			}
+		});
+	}
 	
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -68,10 +86,6 @@ public class Home extends Activity {
 		
 	}
 	
-	@Override
-	public void onBackPressed() {
-	// do something on back.
-	return;
-	}
+	
 
 }

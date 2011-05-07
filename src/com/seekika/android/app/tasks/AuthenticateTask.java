@@ -39,17 +39,14 @@ public class AuthenticateTask extends AsyncTask<String, String, String> {
 	@Override
 	protected String doInBackground(String... params) {
 		return authenticateUser(params[0],params[1]);
-		//Log.i(t,"authenticateUser return " + status);
 		
-		//return status;
 		
 	}
 	
 	@Override
 	protected void onPreExecute(){
 		super.onPreExecute();
-		//this.dialog=ProgressDialog.show(applicationContext, "", 
-			//	"Logging in",true);
+		
 		
 	}
 	
@@ -73,8 +70,11 @@ public class AuthenticateTask extends AsyncTask<String, String, String> {
 		RestClient client = new RestClient(SeekikaConstants.LOGIN_URL);
 		client.AddParam("username", username);
 		client.AddParam("password", password);
+		
+		
 		try{
 			client.Execute(RequestMethod.GET);
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}
