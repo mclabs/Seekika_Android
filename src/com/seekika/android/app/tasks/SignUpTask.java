@@ -41,6 +41,7 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 		client.AddParam("email", email);
 		client.AddParam("username", username);
 		client.AddParam("password", password);
+		client.AddParam("android_id", SeekikaConstants.ANDROID_ID);
 		try{
 			client.Execute(RequestMethod.GET);
 		}catch(Exception e){

@@ -20,5 +20,16 @@
     <string name="login_error">Invalid username/password combination</string>
     <string name="connection_error">Unable to connect to remote server</string>
     <string name="signup_failed">Username or email address already in use. Please enter new details</string>
+    <string name="set_status">Set status</string>
+    
+    <string name="status_prompt">Set status</string>
+    <string-array name="status_array">
+        <item>Public</item>
+        <item>Private</item>
+      
+    </string-array>
+    <string name="publish">Publish</string>
     
 </resources>
+
+

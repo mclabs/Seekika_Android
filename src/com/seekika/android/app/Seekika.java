@@ -20,7 +20,6 @@ import android.widget.Toast;
 public class Seekika extends Activity {
 	private static final String t = "SeekikaActivity";
 	private static final int SIGNUP=1;
-	private static final String LOGIN_URL="http://192.168.1.102:8080/api/auth/";
 	private boolean mError=false;
 	private String mErrorMessage="";
 	

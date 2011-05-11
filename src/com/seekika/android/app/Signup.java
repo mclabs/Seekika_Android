@@ -169,6 +169,7 @@ public class Signup extends Activity implements SignupListener {
         	if(status==1){
         		//go to home screen activity
         		Intent intent=new Intent(Signup.this,Home.class);
+        		intent.putExtra("_username", _username);
         		startActivity(intent);
         		finish();
         		

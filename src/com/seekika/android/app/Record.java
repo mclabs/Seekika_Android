@@ -10,6 +10,7 @@ import java.io.IOException;
 import com.seekika.android.app.helpers.AudioRecorder;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.media.MediaRecorder;
@@ -22,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.Toast;
 
 public class Record extends Activity {
 	
@@ -38,7 +40,7 @@ public class Record extends Activity {
 	private Chronometer mChronometer;
 	
 	private File outfile = null;
-	private String audioFileName="";
+	private String myRecording="";
 	final AudioRecorder recorder = new AudioRecorder();
 	
 	/** Called when the activity is first created. */
@@ -62,6 +64,11 @@ public class Record extends Activity {
 				//stop timer
 				stopRecording();
 				//stop recording and save audio file to SD card
+				//new activity begins here
+				Intent intent=new Intent(Record.this,Capture.class);
+				Log.i(TAG,"audio file " + myRecording);
+				intent.putExtra("audioFileName", myRecording);
+				startActivity(intent);
 				
 			}
 		});
@@ -74,8 +81,7 @@ public class Record extends Activity {
 				startRecording();
 				mBtnStartRecording.setEnabled(false);
 				mBtnStopRecording.setEnabled(true);
-				//start recording audio
-				//start timer
+				
 				
 			}
 		});
@@ -88,7 +94,7 @@ public class Record extends Activity {
         
         
         try{
-        	String myRecording="Seekika-" + System.currentTimeMillis();
+        	myRecording="Seekika-" + System.currentTimeMillis();
         	Log.i(TAG, "Start Recording");
         	recorder.startRecording(myRecording);
         }catch(IOException e){
@@ -100,13 +106,30 @@ public class Record extends Activity {
     
     private void stopRecording(){
     	mChronometer.stop();
-    	
+    	getElapsedTime();
     	try{
     		recorder.stop();
+    		
+    		
     	}catch(IOException e){
     		e.printStackTrace();
     	}
     	
+    }
+    
+    private void getElapsedTime(){
+    	long elapsedMillis = SystemClock.elapsedRealtime() - mChronometer.getBase();            
+        Toast.makeText(Record.this, "Elapsed milliseconds: " + elapsedMillis, 
+                Toast.LENGTH_SHORT).show();
+    }
+    
+    @Override
+    public void onPause(){
+    	super.onPause();
+    	if(recorder.mRecorder!=null){
+    		recorder.mRecorder.release();
+    		recorder.mRecorder=null;
+    	}
     }
     
    

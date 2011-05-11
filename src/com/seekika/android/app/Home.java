@@ -26,12 +26,15 @@ public class Home extends Activity {
         //retrieve username and display
         SharedPreferences settings = getSharedPreferences(SeekikaConstants.PREFS_NAME, 0);
 	    _username=settings.getString("auth_username", "");
-	    
+	    Bundle extras=getIntent().getExtras();
+	    if(_username.length()==0){
+	    	_username=extras.getString("_username");
+	    }
 	    
         setContentView(R.layout.home);
         TextView text = (TextView) findViewById(R.id.text);
         text.setText("This app has been started " + _username + " times.");
-        setTitle(getString(R.string.welcome) + "       " + _username);
+        setTitle(getString(R.string.welcome) + " " + _username);
         initComponents();  
     }
 	
