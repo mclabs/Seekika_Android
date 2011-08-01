@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,9 +22,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.ImageView;
 import android.widget.Toast;
+
 
 public class Record extends Activity {
 	
@@ -42,13 +46,22 @@ public class Record extends Activity {
 	private File outfile = null;
 	private String myRecording="";
 	final AudioRecorder recorder = new AudioRecorder();
+	AnimationDrawable yourAnimation;  
 	
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.recordstory);
+        //anim
+        //final ImageView imageView = (ImageView) findViewById(R.id.freq);   
+        
+       //imageView.setBackgroundResource(R.drawable.recordinganim);   
+       // yourAnimation = (AnimationDrawable) imageView.getBackground(); 
+        
+        //end anim
         initComponents();
     }
     
@@ -69,6 +82,7 @@ public class Record extends Activity {
 				Log.i(TAG,"audio file " + myRecording);
 				intent.putExtra("audioFileName", myRecording);
 				startActivity(intent);
+				finish();
 				
 			}
 		});
@@ -78,6 +92,7 @@ public class Record extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				//yourAnimation.start();
 				startRecording();
 				mBtnStartRecording.setEnabled(false);
 				mBtnStopRecording.setEnabled(true);
@@ -119,8 +134,8 @@ public class Record extends Activity {
     
     private void getElapsedTime(){
     	long elapsedMillis = SystemClock.elapsedRealtime() - mChronometer.getBase();            
-        Toast.makeText(Record.this, "Elapsed milliseconds: " + elapsedMillis, 
-                Toast.LENGTH_SHORT).show();
+        //Toast.makeText(Record.this, "Elapsed milliseconds: " + elapsedMillis, 
+          //      Toast.LENGTH_SHORT).show();
     }
     
     @Override
@@ -130,6 +145,11 @@ public class Record extends Activity {
     		recorder.mRecorder.release();
     		recorder.mRecorder=null;
     	}
+    }
+    
+    @Override
+    public void onResume(){
+    	super.onResume();
     }
     
    

@@ -3,20 +3,65 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/white"
     >
-<TextView
-	android:id="@+id/text"  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/app_name"
-    />
     
+    <ImageView
+android:src="@drawable/seekika_android_logo"
+android:id="@+id/widget73"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:background="@drawable/white"
+android:padding="40px"
+>
+</ImageView>
     <Button
 android:id="@+id/btn_record"
 android:layout_width="fill_parent"
 android:layout_height="wrap_content"
-android:padding="5px"
+
 android:text="@string/record_story"
+android:drawableLeft="@drawable/mic_icon"
+android:drawablePadding="5px"
 >
 </Button>
+<TextView
+android:id="@+id/widget164"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:padding="5px"
+android:text=""
+android:textColor="@drawable/title_color"
+android:textStyle="bold"
+/>
+<Button
+android:id="@+id/btn_gallery"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+
+android:text="@string/view_gallery"
+android:drawableLeft="@drawable/gallery_icon"
+android:drawablePadding="5px"
+>
+</Button>
+<TextView
+android:id="@+id/widget164"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:padding="5px"
+android:text=""
+android:textColor="@drawable/title_color"
+android:textStyle="bold"
+/>
+<Button
+android:id="@+id/btn_profile"
+android:layout_width="fill_parent"
+android:layout_height="wrap_content"
+android:text="@string/view_profile"
+android:drawableLeft="@drawable/my_account_icon"
+android:drawablePadding="5px"
+>
+</Button>
+
+
 </LinearLayout>

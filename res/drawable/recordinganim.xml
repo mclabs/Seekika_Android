@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+	 <item android:drawable="@drawable/frequency_bar0" android:duration="60" />  
+    <item android:drawable="@drawable/frequency_bar1" android:duration="60" />  
+    <item android:drawable="@drawable/frequency_bar2" android:duration="60" />  
+    <item android:drawable="@drawable/frequency_bar3" android:duration="60" />  
+    <item android:drawable="@drawable/frequency_bar4" android:duration="60" />  
+    <item android:drawable="@drawable/frequency_bar5" android:duration="60" />  
+    <item android:drawable="@drawable/frequency_bar6" android:duration="60" />  
+    <item android:drawable="@drawable/frequency_bar7" android:duration="60" />  
+    <item android:drawable="@drawable/frequency_bar8" android:duration="60" />  
+    <item android:drawable="@drawable/frequency_bar9" android:duration="60" />  
+</animation-list>

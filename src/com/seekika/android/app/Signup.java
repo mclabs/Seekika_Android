@@ -1,5 +1,10 @@
 package com.seekika.android.app;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.seekika.android.app.constants.SeekikaConstants;
 import com.seekika.android.app.helpers.Encryption;
 import com.seekika.android.app.listeners.SignupListener;
 import com.seekika.android.app.tasks.SignUpTask;
@@ -10,6 +15,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -95,15 +101,16 @@ public class Signup extends Activity implements SignupListener {
 					mSignUpTask=new SignUpTask();
 					mSignUpTask.applicationContext=Signup.this;
 					
-					_username=mUsername.getText().toString();
-					_name=mName.getText().toString();
-					_email=mEmail.getText().toString();
+					_username=mUsername.getText().toString().trim();
+					_name=mName.getText().toString().trim();
+					_email=mEmail.getText().toString().trim();
 					//password needs to be encrypted
 					Encryption enc=new Encryption();
-					_password=mPassword.getText().toString();
+					_password=mPassword.getText().toString().trim();
 					
 					mSignUpTask.setmSignUpListener(Signup.this);
-					mSignUpTask.execute(_name,_email,_username,enc.md5(_password));
+					String androidId=android.provider.Settings.Secure.getString(getContentResolver(), android.provider.Settings.Secure.ANDROID_ID);
+					mSignUpTask.execute(_name,_email,_username,_password,androidId);
 					
 				}else{
 					final Toast t = Toast.makeText(Signup.this, "Error!\n\n" + mErrorMessage,
@@ -164,19 +171,38 @@ public class Signup extends Activity implements SignupListener {
         if(result==null){
         	new AlertDialog.Builder(Signup.this).setTitle("Connection Error").setMessage(getString(R.string.connection_error)).setNeutralButton("Close", null).show();
         }else{
-        	String r=result.trim();
-			int status=Integer.parseInt(r.replaceAll("[^0-9.]",""));
-        	if(status==1){
-        		//go to home screen activity
-        		Intent intent=new Intent(Signup.this,Home.class);
-        		intent.putExtra("_username", _username);
-        		startActivity(intent);
-        		finish();
-        		
-        	}else{
-        		//signup fail
-        		new AlertDialog.Builder(Signup.this).setTitle("Signup Error").setMessage(getString(R.string.signup_failed)).setNeutralButton("Close", null).show();
-        	}
+        	try {
+        		Log.i(TAG,result);
+				JSONObject jsonObj = new JSONObject();
+				JSONArray aryJSONStrings = new JSONArray(result);
+				int i=0;
+				String result_message=aryJSONStrings.getJSONObject(i).getString("message");
+				String userKey=aryJSONStrings.getJSONObject(i).getString("key");
+				
+				Log.i(TAG,"user_key " + userKey);
+				Log.i(TAG,"message " + result_message);
+				
+				if(result_message.equalsIgnoreCase("success")){
+					Intent intent=new Intent(Signup.this,Home.class);
+	        		intent.putExtra("_username", _username);
+	        		intent.putExtra("userKey", userKey);
+	        		SharedPreferences settings = getSharedPreferences(SeekikaConstants.PREFS_NAME, 0);
+	        		SharedPreferences.Editor editor = settings.edit();
+	        		editor.putString("userKey", userKey);
+	        		editor.putString("auth_username",_username);
+	        		editor.commit();
+	        		
+	        		startActivity(intent);
+	        		finish();
+				}else{
+					new AlertDialog.Builder(Signup.this).setTitle("Signup Error").setMessage(getString(R.string.signup_failed)).setNeutralButton("Close", null).show();
+				}
+        	
+        	} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+  
         }
 		
 	}

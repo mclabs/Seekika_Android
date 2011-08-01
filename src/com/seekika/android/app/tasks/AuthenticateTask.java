@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.seekika.android.app.Login;
 import com.seekika.android.app.R;
-import com.seekika.android.app.Seekika;
+import com.seekika.android.app.SeekikaStart;
 import com.seekika.android.app.constants.SeekikaConstants;
 import com.seekika.android.app.helpers.RestClient;
 import com.seekika.android.app.helpers.RestClient.RequestMethod;

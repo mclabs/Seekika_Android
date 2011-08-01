@@ -4,9 +4,14 @@ android:id="@+id/widget55"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 xmlns:android="http://schemas.android.com/apk/res/android"
+android:background="@drawable/white"
+android:padding="5px"
 >
+
+
+
 <ImageView
-android:src="@drawable/techcrunch"
+android:src="@drawable/seekika_android_logo"
 android:id="@+id/widget73"
 android:layout_width="wrap_content"
 android:layout_height="wrap_content"
@@ -23,6 +28,9 @@ android:layout_alignParentBottom="true"
 android:layout_alignParentLeft="true"
 
 >
+
+
+
 <LinearLayout
 android:id="@+id/widget80"
 android:layout_width="fill_parent"
@@ -51,6 +59,8 @@ android:layout_height="wrap_content"
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content" 
     android:id="@+id/chrono"
+    android:textColor="@drawable/title_color"
+	android:textStyle="bold"
     />
 </LinearLayout>
 </RelativeLayout>

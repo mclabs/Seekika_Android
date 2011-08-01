@@ -1,6 +1,3 @@
-/**
- * A Rest Client to easily call up my Seekika REST API
- */
 package com.seekika.android.app.helpers;
 
 import java.io.BufferedReader;

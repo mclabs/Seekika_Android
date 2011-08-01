@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+android:id="@+id/feeds_list"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:background="@drawable/white"
+android:padding="10px"
+>
+    
+    <ListView android:id="@android:id/list"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:background="@drawable/white"
+               android:layout_weight="1"
+               android:drawSelectorOnTop="true"/>
+<TextView android:id="@id/android:empty"
+android:layout_width="fill_parent" 
+android:layout_height="fill_parent" 
+android:background="@drawable/white"
+android:textColor="@drawable/black"
+android:text="No feed"
+/>
+     
+ </LinearLayout>
+ 

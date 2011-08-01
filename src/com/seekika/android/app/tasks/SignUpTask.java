@@ -18,7 +18,7 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 	@Override
 	protected String doInBackground(String... params) {
 		
-		return signUpUser(params[0],params[1],params[2],params[3]);
+		return signUpUser(params[0],params[1],params[2],params[3],params[4]);
 	}
 	
 	@Override
@@ -35,13 +35,13 @@ public class SignUpTask extends AsyncTask<String, String, String> {
 		
 	}
 	
-	private String signUpUser(String name,String email,String username,String password){
+	private String signUpUser(String name,String email,String username,String password,String androidId){
 		RestClient client = new RestClient(SeekikaConstants.SIGNUP_URL);
 		client.AddParam("name", name);
 		client.AddParam("email", email);
 		client.AddParam("username", username);
 		client.AddParam("password", password);
-		client.AddParam("android_id", SeekikaConstants.ANDROID_ID);
+		client.AddParam("android_id", androidId);
 		try{
 			client.Execute(RequestMethod.GET);
 		}catch(Exception e){

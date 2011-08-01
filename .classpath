@@ -3,6 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="/Users/johnwesonga/Downloads/httpcomponents-client-4.1.1/lib/httpmime-4.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/johnwesonga/Downloads/aws-android-sdk-0.2.1/lib/aws-android-sdk-0.2.1-debug.jar"/>
+	<classpathentry kind="lib" path="/Users/johnwesonga/Downloads/signpost-commonshttp4-1.2.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/johnwesonga/Downloads/signpost-core-1.2.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/johnwesonga/libs/cloudtasks-android/lib/c2dm-sources.jar"/>
+	<classpathentry kind="lib" path="/Users/johnwesonga/libs/cloudtasks-android/lib/c2dm.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

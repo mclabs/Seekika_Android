@@ -15,6 +15,7 @@ public class Encryption {
 	    try {
 	        // Create MD5 Hash
 	        MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+	        digest.reset();
 	        digest.update(s.getBytes());
 	        byte messageDigest[] = digest.digest();
 	        

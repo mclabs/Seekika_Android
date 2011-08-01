@@ -1,5 +1,9 @@
 package com.seekika.android.app;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.seekika.android.app.constants.SeekikaConstants;
 import com.seekika.android.app.helpers.Encryption;
 import com.seekika.android.app.listeners.LoginListener;
@@ -68,8 +72,8 @@ public class Login extends Activity implements LoginListener {
 					
 				}
 			};
-			mProgressDialog.setTitle("Auth");
-			mProgressDialog.setMessage("Authorizing");
+			mProgressDialog.setTitle("");
+			mProgressDialog.setMessage("Signing in");
 			mProgressDialog.setIcon(android.R.drawable.ic_dialog_info);
             mProgressDialog.setIndeterminate(true);
             mProgressDialog.setCancelable(false);
@@ -92,7 +96,7 @@ public class Login extends Activity implements LoginListener {
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent=new Intent(Login.this,Seekika.class);
+				Intent intent=new Intent(Login.this,SeekikaStart.class);
 				startActivity(intent);
 				finish();
 				
@@ -132,12 +136,12 @@ public class Login extends Activity implements LoginListener {
 					mAuthenticateTask=new AuthenticateTask();
 					//authTask.applicationContext=Login.this;
 					//pass the username & password
-					_username=mUsername.getText().toString();
-					_password=mPassword.getText().toString();
+					_username=mUsername.getText().toString().trim();
+					_password=mPassword.getText().toString().trim();
 					Encryption enc=new Encryption();
 					
 					mAuthenticateTask.setLoginListener(Login.this);
-					mAuthenticateTask.execute(_username,enc.md5(_password));
+					mAuthenticateTask.execute(_username,_password);
 					mErrorMessage = "";
 					
 				}else{
@@ -163,7 +167,33 @@ public class Login extends Activity implements LoginListener {
 		if(result == null){
 			new AlertDialog.Builder(Login.this).setTitle("Connection Error").setMessage(getString(R.string.connection_error)).setNeutralButton("Close", null).show();
 		}else{
-			String r=result.trim();
+			try{
+				JSONObject jsonObj = new JSONObject();
+				JSONArray aryJSONStrings = new JSONArray(result);
+				int i=0;
+				String result_message=aryJSONStrings.getJSONObject(i).getString("message");
+				String userKey=aryJSONStrings.getJSONObject(i).getString("key");
+				Log.i(TAG,"user_key " + userKey);
+				if(result_message.equalsIgnoreCase("success")){
+					editor.putString("userKey", userKey);
+					editor.putString("auth_username", _username);
+					editor.commit();
+					
+					Intent intent=new Intent(Login.this,Home.class);
+					startActivity(intent);
+					finish();
+				}else{
+					Log.i(TAG,"failure");
+					new AlertDialog.Builder(Login.this).setTitle("Invalid").setMessage(getString(R.string.login_error)).setNeutralButton("Close", null).show();
+				}
+			}catch(JSONException e){
+				e.printStackTrace();
+			}
+			
+		}
+			
+		/**
+		 * String r=result.trim();
 			int status=Integer.parseInt(r.replaceAll("[^0-9.]",""));
 			if(status==1){
 				Log.i(TAG,"success" + _username);
@@ -171,15 +201,13 @@ public class Login extends Activity implements LoginListener {
 				editor.commit();
 				Intent intent=new Intent(Login.this,Home.class);
 				startActivity(intent);
-				//save username in the preferences
-				//start a new activity
+				finish();
+				
 			}else{
 				Log.i(TAG,"failure");
 				new AlertDialog.Builder(Login.this).setTitle("Invalid").setMessage(getString(R.string.login_error)).setNeutralButton("Close", null).show();
 			}
-		}
-			
-		
+		 */
 			
 	}
 	

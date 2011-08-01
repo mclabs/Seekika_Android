@@ -37,12 +37,9 @@ public class AudioRecorder {
 			    values.put(MediaStore.MediaColumns.TITLE, audioFile);
 			    
 			    mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-			    mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+			    mRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
 			    mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-			    mRecorder.setOutputFile(path+audioFile+".mp3");
-			
-			
-		
+			    mRecorder.setOutputFile(path+audioFile+".mp4");
 		
 		try{
 			mRecorder.prepare();

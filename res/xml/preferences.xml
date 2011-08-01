@@ -1,6 +1,17 @@
 <PreferenceScreen
   xmlns:android="http://schemas.android.com/apk/res/android">
   <PreferenceCategory
+                android:title="Notifications">
+                <EditTextPreference
+                android:name="Notification Address"
+                android:summary="Email Address"
+                android:defaultValue=""
+                android:dialogTitle="Notifications"
+				android:dialogMessage="Enter your address"               
+                android:title="Edit This Text"
+                android:key="notification_email" />
+  </PreferenceCategory>
+  <PreferenceCategory
                 android:title="Location">
   </PreferenceCategory>
   

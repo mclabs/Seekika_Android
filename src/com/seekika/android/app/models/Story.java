@@ -1,25 +1,27 @@
 package com.seekika.android.app.models;
 
+import java.util.Date;
+
 public class Story {
 	
 	private int id;
 	private String title;
-	private String userId;
+	private String description;
+	private String userKey;
 	private String created_on;
 	private String status;
 	private String lat;
 	private String lon;
 	private String deviceID;
+	private String fileName;
+	private String createdOn;
+	private String fileSize;
+	private int uploaded;
+	private String storyKey;
 	
-	public Story(int id, String title, String userId, String created_on,
-			String status) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.userId = userId;
-		this.created_on = created_on;
-		this.status = status;
-	}
+	public Story(){}
+	
+	
 	
 	public int getId() {
 		return id;
@@ -33,11 +35,11 @@ public class Story {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getUserId() {
-		return userId;
+	public String getUserKey() {
+		return userKey;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserKey(String userKey) {
+		this.userKey = userKey;
 	}
 	public String getCreated_on() {
 		return created_on;
@@ -66,6 +68,46 @@ public class Story {
 
 	public void setLon(String lon) {
 		this.lon = lon;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+
+
+	public int getUploaded() {
+		return uploaded;
+	}
+
+
+
+	public void setUploaded(int uploaded) {
+		this.uploaded = uploaded;
+	}
+
+
+
+	public String getStoryKey() {
+		return storyKey;
+	}
+
+
+
+	public void setStoryKey(String storyKey) {
+		this.storyKey = storyKey;
 	}
 	
 }
